@@ -1,5 +1,6 @@
 import lab01.tdd.CircularList;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,14 +27,23 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return this.items.size() > this.nextElement ?
-                Optional.of(this.items.get(this.nextElement++)) :
-                Optional.empty();
+        if (this.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(this.items.get(this.nextElement++ % this.size()));
     }
 
     @Override
     public Optional<Integer> previous() {
-        return Optional.empty();
+        if (this.isEmpty()) {
+            return Optional.empty();
+        }
+        if (this.nextElement == 0) {
+            this.nextElement = this.items.size() - 1;
+        } else {
+            this.nextElement--;
+        }
+        return Optional.of(this.items.get(this.nextElement % this.size()));
     }
 
     @Override
