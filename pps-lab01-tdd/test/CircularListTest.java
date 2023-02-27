@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 /**
  * The test suite for testing the CircularList implementation
@@ -73,5 +74,11 @@ public class CircularListTest {
         assertFalse(this.circularList.previous().isPresent());
     }
 
-    
+    @Test
+    void testCircularity() {
+        this.circularList.add(1);
+        assertEquals(1, this.circularList.next().get());
+        assertEquals(1, this.circularList.next().get());
+        assertEquals(1, this.circularList.previous().get());
+    }
 }
