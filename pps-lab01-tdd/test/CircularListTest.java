@@ -51,4 +51,15 @@ public class CircularListTest {
         assertTrue(prevElement.isPresent());
         assertEquals(1, prevElement.get());
     }
+
+    @Test
+    void testListCanBeResetted() {
+        this.circularList.add(1);
+        this.circularList.add(2);
+        this.circularList.next();
+        this.circularList.reset();
+        final Optional<Integer> nextElement = this.circularList.next();
+        assertTrue(nextElement.isPresent());
+        assertEquals(1, nextElement.get());
+    }
 }
