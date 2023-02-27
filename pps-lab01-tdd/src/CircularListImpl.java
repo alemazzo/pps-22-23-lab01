@@ -1,17 +1,21 @@
 import lab01.tdd.CircularList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CircularListImpl implements CircularList {
 
+    private final List<Integer> items = new ArrayList<>();
+
     @Override
     public void add(int element) {
-
+        this.items.add(element);
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.items.size();
     }
 
     @Override
