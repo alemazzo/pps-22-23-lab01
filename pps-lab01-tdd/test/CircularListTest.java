@@ -62,4 +62,11 @@ public class CircularListTest {
         assertTrue(nextElement.isPresent());
         assertEquals(1, nextElement.get());
     }
+
+    @Test
+    void testNextOnEmptyListGiveAnEmptyItem() {
+        assertFalse(this.circularList.next().isPresent());
+    }
+
+    
 }
