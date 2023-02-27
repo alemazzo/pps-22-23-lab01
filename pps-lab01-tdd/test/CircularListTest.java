@@ -68,5 +68,10 @@ public class CircularListTest {
         assertFalse(this.circularList.next().isPresent());
     }
 
+    @Test
+    void testPrevOnEmptyListGiveAnEmptyItem() {
+        assertFalse(this.circularList.previous().isPresent());
+    }
+
     
 }
