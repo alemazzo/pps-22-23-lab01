@@ -20,16 +20,18 @@ class SimpleBankAccountWithAtmTest {
 
     @Test
     void testDepositApplyFees() {
-        this.bankAccount.deposit(this.accountHolder.getId(), 10);
-        assertEquals(109, this.bankAccount.getBalance());
+        final int amountToDeposit = 10;
+        final int expectedAmountAfterDeposit = 109;
+        this.bankAccount.deposit(this.accountHolder.getId(), amountToDeposit);
+        assertEquals(expectedAmountAfterDeposit, this.bankAccount.getBalance());
     }
 
     @Test
     void testWithdrawApplyFees() {
-        this.bankAccount.withdraw(this.accountHolder.getId(), 50);
-        assertEquals(49, this.bankAccount.getBalance());
+        final int amountToWithdraw = 10;
+        final int expectedAmountAfterWithdraw = 89;
+        this.bankAccount.withdraw(this.accountHolder.getId(), amountToWithdraw);
+        assertEquals(expectedAmountAfterWithdraw, this.bankAccount.getBalance());
     }
-
-
 
 }
