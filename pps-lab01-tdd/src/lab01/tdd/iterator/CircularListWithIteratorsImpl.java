@@ -39,6 +39,10 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        return null;
+        return this.isEmpty() ?
+                IntStream.of().iterator() :
+                IntStream.iterate(0, i -> i + 1)
+                        .map(i -> this.elements.get(this.elements.size() - 1 - (i % this.elements.size())))
+                        .iterator();
     }
 }
