@@ -4,6 +4,7 @@ import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class CircularListImpl implements CircularList {
 
@@ -30,7 +31,9 @@ public class CircularListImpl implements CircularList {
         if (this.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(this.items.get(this.nextElement++ % this.size()));
+        final int element = this.items.get(this.nextElement);
+        this.nextElement = this.nextElement + 1 % this.items.size();
+        return Optional.of(element);
     }
 
     @Override
@@ -38,12 +41,10 @@ public class CircularListImpl implements CircularList {
         if (this.isEmpty()) {
             return Optional.empty();
         }
-        if (this.nextElement == 0) {
-            this.nextElement = this.items.size() - 1;
-        } else {
-            this.nextElement--;
-        }
-        return Optional.of(this.items.get(this.nextElement % this.size()));
+        this.nextElement = this.nextElement == 0 ?
+                this.items.size() - 1 :
+                this.nextElement - 1;
+        return Optional.of(this.items.get(nextElement));
     }
 
     @Override
