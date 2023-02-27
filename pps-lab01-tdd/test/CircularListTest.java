@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 /**
  * The test suite for testing the CircularList implementation
  */
@@ -30,5 +32,13 @@ public class CircularListTest {
     void testItemsCanBeAdded() {
         this.circularList.add(1);
         assertEquals(1, this.circularList.size());
+    }
+
+    @Test
+    void testNextElement() {
+        this.circularList.add(1);
+        final Optional<Integer> nextElement = this.circularList.next();
+        assertTrue(nextElement.isPresent());
+        assertEquals(1, nextElement.get());
     }
 }
