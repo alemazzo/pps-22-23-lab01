@@ -14,4 +14,9 @@ public class SimpleBankAccountWithAtm extends SimpleBankAccount {
     public void deposit(int userID, double amount) {
         super.deposit(userID, amount - FEES);
     }
+
+    @Override
+    public void withdraw(int userID, double amount) {
+        super.withdraw(userID, amount + FEES);
+    }
 }

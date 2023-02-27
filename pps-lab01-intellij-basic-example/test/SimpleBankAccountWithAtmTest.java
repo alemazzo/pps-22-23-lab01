@@ -24,6 +24,12 @@ class SimpleBankAccountWithAtmTest {
         assertEquals(109, this.bankAccount.getBalance());
     }
 
+    @Test
+    void testWithdrawApplyFees() {
+        this.bankAccount.withdraw(this.accountHolder.getId(), 50);
+        assertEquals(49, this.bankAccount.getBalance());
+    }
+
 
 
 }
