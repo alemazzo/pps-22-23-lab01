@@ -48,5 +48,15 @@ public class CircularListWithIteratorsTest {
         assertEquals(1, iterator.next());
     }
 
+    @Test
+    void testEmptyForwardIterator() {
+        assertFalse(this.list.forwardIterator().hasNext());
+    }
+
+    @Test
+    void testEmptyBackwardIterator() {
+        assertFalse(this.list.backwardIterator().hasNext());
+    }
+
 
 }
