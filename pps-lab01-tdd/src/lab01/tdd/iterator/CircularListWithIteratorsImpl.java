@@ -1,25 +1,12 @@
 package lab01.tdd.iterator;
 
+import lab01.tdd.CircularList;
+import lab01.tdd.CircularListImpl;
 import lab01.tdd.iterator.CircularListWithIterators;
 
 import java.util.Iterator;
 
-public class CircularListWithIteratorsImpl implements CircularListWithIterators {
-
-    @Override
-    public void add(int element) {
-
-    }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
+public class CircularListWithIteratorsImpl extends CircularListImpl implements CircularListWithIterators {
 
     @Override
     public Iterator<Integer> forwardIterator() {
