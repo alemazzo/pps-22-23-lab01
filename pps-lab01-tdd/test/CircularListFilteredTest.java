@@ -44,6 +44,17 @@ public class CircularListFilteredTest {
         assertEquals(4, next.get());
     }
 
+    @Test
+    void testEvenNumbersCircularity() {
+        this.addElements(1, 2, 3);
+        Optional<Integer> next;
+        for (int i = 0; i < 5; i++) {
+            next = this.circularList.filteredNext(this::filterEven);
+            assertTrue(next.isPresent());
+            assertEquals(2, next.get());
+        }
+    }
+
     private boolean filterEven(int element){
         return element % 2 == 0;
     }

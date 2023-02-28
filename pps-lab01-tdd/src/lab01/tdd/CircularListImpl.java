@@ -34,7 +34,7 @@ public class CircularListImpl implements CircularList {
             return Optional.empty();
         }
         final int element = this.items.get(this.nextElement);
-        this.nextElement = this.nextElement + 1 % this.items.size();
+        this.nextElement = (this.nextElement + 1) % this.items.size();
         return Optional.of(element);
     }
 
