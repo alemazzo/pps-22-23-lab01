@@ -23,7 +23,32 @@ public class CircularListFilteredTest {
 
     @Test
     void testFilterOnEmptyList() {
-        final Optional<Integer> next = this.circularList.filteredNext(i -> true);
+        final Optional<Integer> next = this.circularList.filteredNext(this::filterIdentity);
+        assertFalse(next.isPresent());
+    }
+
+    private void addElements(int ...args) {
+        for (int element : args){
+            this.circularList.add(element);
+        }
+    }
+
+    @Test
+    void testEvenNumbers() {
+        this.addElements(1, 2, 3, 4);
+        Optional<Integer> next = this.circularList.filteredNext(this::filterEven);
+        assertTrue(next.isPresent());
+        assertEquals(2, next.get());
+        next = this.circularList.filteredNext(this::filterEven);
+        assertTrue(next.isPresent());
+        assertEquals(4, next.get());
+    }
+
+    private boolean filterEven(int element){
+        return element % 2 == 0;
+    }
+    private boolean filterIdentity(int element) {
+        return true;
     }
 
 }
