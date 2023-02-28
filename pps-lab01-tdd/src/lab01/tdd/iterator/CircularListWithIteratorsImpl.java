@@ -7,6 +7,8 @@ import lab01.tdd.iterator.CircularListWithIterators;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.stream.IntStream;
 
 public class CircularListWithIteratorsImpl implements CircularListWithIterators {
@@ -28,21 +30,21 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
         return this.size() == 0;
     }
 
-    @Override
-    public Iterator<Integer> forwardIterator() {
+    private Iterator<Integer> getIteratorFromFunction(Function<Integer, Integer> mapper) {
         return this.isEmpty() ?
                 IntStream.of().iterator() :
                 IntStream.iterate(0, i -> i + 1)
-                        .map(i -> this.elements.get(i % this.elements.size()))
+                        .map(mapper::apply)
+                        .map(this.elements::get)
                         .iterator();
+    }
+    @Override
+    public Iterator<Integer> forwardIterator() {
+        return this.getIteratorFromFunction(i -> i % this.elements.size());
     }
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        return this.isEmpty() ?
-                IntStream.of().iterator() :
-                IntStream.iterate(0, i -> i + 1)
-                        .map(i -> this.elements.get(this.elements.size() - 1 - (i % this.elements.size())))
-                        .iterator();
+        return this.getIteratorFromFunction(i -> this.elements.size() - 1 - (i % this.elements.size()));
     }
 }

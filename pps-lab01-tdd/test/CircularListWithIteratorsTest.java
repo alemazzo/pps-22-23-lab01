@@ -15,11 +15,12 @@ public class CircularListWithIteratorsTest {
         list = new CircularListWithIteratorsImpl();
     }
 
-    private void addElements(int ...elems){
-        for (int elem : elems) {
+    private void addElements(int ...elements){
+        for (int elem : elements) {
             this.list.add(elem);
         }
     }
+
     @Test
     void testForwardIterator() {
         this.addElements(1, 2);
