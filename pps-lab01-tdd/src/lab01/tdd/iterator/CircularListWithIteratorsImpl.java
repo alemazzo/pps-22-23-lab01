@@ -5,11 +5,14 @@ import lab01.tdd.CircularListImpl;
 import lab01.tdd.iterator.CircularListWithIterators;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class CircularListWithIteratorsImpl implements CircularListWithIterators {
 
@@ -40,11 +43,22 @@ public class CircularListWithIteratorsImpl implements CircularListWithIterators 
     }
     @Override
     public Iterator<Integer> forwardIterator() {
-        return this.getIteratorFromFunction(i -> i % this.elements.size());
+        return this.isEmpty() ?
+                IntStream.of().iterator() :
+                Stream.generate(this.elements::stream)
+                        .flatMap(i->i)
+                        .iterator();
     }
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        return this.getIteratorFromFunction(i -> this.elements.size() - 1 - (i % this.elements.size()));
+        final List<Integer> reversed = new ArrayList<>(this.elements);
+        Collections.reverse(reversed);
+        return this.isEmpty() ?
+                IntStream.of().iterator() :
+                Stream.generate(reversed::stream)
+                        .flatMap(i->i)
+                        .iterator();
     }
+
 }
