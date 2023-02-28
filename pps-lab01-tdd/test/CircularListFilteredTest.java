@@ -1,5 +1,3 @@
-import lab01.tdd.CircularList;
-import lab01.tdd.CircularListImpl;
 import lab01.tdd.filtered.CircularListFiltered;
 import lab01.tdd.filtered.CircularListFilteredImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,8 +25,8 @@ public class CircularListFilteredTest {
         assertFalse(next.isPresent());
     }
 
-    private void addElements(int ...args) {
-        for (int element : args){
+    private void addElements(int... args) {
+        for (int element : args) {
             this.circularList.add(element);
         }
     }
@@ -43,7 +41,7 @@ public class CircularListFilteredTest {
         assertTrue(next.isPresent());
         assertEquals(4, next.get());
     }
-
+    
     @Test
     void testEvenNumbersCircularity() {
         this.addElements(1, 2, 3);
@@ -55,9 +53,10 @@ public class CircularListFilteredTest {
         }
     }
 
-    private boolean filterEven(int element){
+    private boolean filterEven(int element) {
         return element % 2 == 0;
     }
+
     private boolean filterIdentity(int element) {
         return true;
     }

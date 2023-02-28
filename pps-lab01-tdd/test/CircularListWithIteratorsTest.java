@@ -3,8 +3,9 @@ import lab01.tdd.iterator.CircularListWithIteratorsImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 import java.util.Iterator;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CircularListWithIteratorsTest {
 
@@ -15,7 +16,7 @@ public class CircularListWithIteratorsTest {
         list = new CircularListWithIteratorsImpl();
     }
 
-    private void addElements(int ...elements){
+    private void addElements(int... elements) {
         for (int elem : elements) {
             this.list.add(elem);
         }

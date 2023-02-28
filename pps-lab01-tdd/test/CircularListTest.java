@@ -1,11 +1,11 @@
 import lab01.tdd.CircularList;
-import static org.junit.jupiter.api.Assertions.*;
-
 import lab01.tdd.CircularListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The test suite for testing the CircularList implementation

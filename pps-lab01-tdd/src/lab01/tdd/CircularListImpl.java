@@ -1,12 +1,8 @@
 package lab01.tdd;
 
-import lab01.tdd.CircularList;
-
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class CircularListImpl implements CircularList {
 
