@@ -7,31 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class CircularListFilteredImpl implements CircularListFiltered {
 
+    private final List<Integer> items = new ArrayList<>();
     private final CircularList list = new CircularListImpl();
 
     @Override
-    public void add(Integer element) {
+    public void add(final Integer element) {
+        this.items.add(element);
         this.list.add(element);
     }
 
     @Override
-    public Optional<Integer> filteredNext(Predicate<Integer> filter) {
-        Optional<Integer> next;
-        for (int i = 0; i < this.list.size(); i++) {
-            next = this.list.next();
-
-            if (next.isEmpty()) {
-                return Optional.empty();
-            }
-
-            if (filter.test(next.get())){
-                return next;
-            }
+    public Optional<Integer> filteredNext(final Predicate<Integer> filter) {
+        if (this.items.stream().noneMatch(filter)) {
+            return Optional.empty();
         }
-        return Optional.empty();
+        return Stream.generate(this.list::next)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .filter(filter)
+                .findFirst();
     }
 
 }
