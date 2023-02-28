@@ -1,6 +1,7 @@
 import lab01.tdd.CircularList;
 import lab01.tdd.CircularListImpl;
 import lab01.tdd.filtered.CircularListFiltered;
+import lab01.tdd.filtered.CircularListFilteredImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ public class CircularListFilteredTest {
 
     @BeforeEach
     void beforeEach() {
-        
+        this.circularList = new CircularListFilteredImpl();
     }
 
 }
