@@ -21,4 +21,9 @@ public class CircularListFilteredTest {
         this.circularList = new CircularListFilteredImpl();
     }
 
+    @Test
+    void testFilterOnEmptyList() {
+        final Optional<Integer> next = this.circularList.filteredNext(i -> true);
+    }
+
 }
